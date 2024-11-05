@@ -1,0 +1,200 @@
+DOCUMENTACION DE LOS ENDPOINTS UTILIZANDO SWAGGER:
+
+
+openapi: 3.0.0
+info:
+  title: Reto 2 Juju Gestor de Libros
+  description: Sistema de gestión de libros en línea utilizando Node.js.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /login:
+    post:
+      summary: Iniciar sesión
+      description: Permite a los usuarios iniciar sesión y obtener un token JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "alejandro"
+                password:
+                  type: string
+                  example: "123"
+      responses:
+        '200':
+          description: Token de acceso generado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+        '401':
+          description: Usuario o contraseña incorrectos.
+
+  /books:
+    get:
+      summary: Obtener libros
+      description: Permite a los usuarios buscar libros en la base de datos.
+      parameters:
+        - in: query
+          name: year
+          required: false
+          schema:
+            type: integer
+          description: Año de publicación del libro.
+        - in: query
+          name: title
+          required: false
+          schema:
+            type: string
+          description: Título del libro.
+        - in: query
+          name: author
+          required: false
+          schema:
+            type: string
+          description: Autor del libro.
+      responses:
+        '200':
+          description: Libros encontrados.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: "El Quijote"
+                    author:
+                      type: string
+                      example: "Miguel de Cervantes"
+                    year:
+                      type: integer
+                      example: 1605
+        '404':
+          description: No se encontró el libro en la base de datos.
+
+  /protected:
+    post:
+      summary: Crear un libro
+      description: Permite a los usuarios autenticados crear un nuevo libro.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Nuevo Libro"
+                author:
+                  type: string
+                  example: "Autor Desconocido"
+                year:
+                  type: integer
+                  example: 2023
+                state:
+                  type: string
+                  example: "Nuevo"
+      responses:
+        '201':
+          description: Libro creado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: "Nuevo Libro"
+                  author:
+                    type: string
+                    example: "Autor Desconocido"
+                  year:
+                    type: integer
+                    example: 2023
+                  state:
+                    type: string
+                    example: "Nuevo"
+        '403':
+          description: Token no proporcionado o inválido.
+
+    put:
+      summary: Actualizar un libro
+      description: Permite a los usuarios autenticados actualizar un libro existente.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "60c72b2f9b1d8e1a0c8f3b18"
+                title:
+                  type: string
+                  example: "Libro Actualizado"
+                author:
+                  type: string
+                  example: "Autor Modificado"
+                year:
+                  type: integer
+                  example: 2024
+                state:
+                  type: string
+                  example: "Usado"
+      responses:
+        '201':
+          description: Libro actualizado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modifiedCount:
+                    type: integer
+                    example: 1
+        '404':
+          description: No se encontraron cambios o libro no existente.
+
+    delete:
+      summary: Eliminar un libro
+      description: Permite a los usuarios autenticados eliminar un libro.
+      parameters:
+        - in: query
+          name: title
+          required: true
+          description: Título del libro a eliminar.
+          schema:
+            type: string
+            example: "Libro a Eliminar"
+      responses:
+        '200':
+          description: Libro eliminado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deletedCount:
+                    type: integer
+                    example: 1
+        '404':
+          description: No se encontró el libro para eliminar.
+        '403':
+          description: Token no proporcionado o inválido.
+
+
