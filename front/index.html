@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  </head>
+  <body>
+
+    <header>
+      <h1>GESTOR DE LIBROS</h1>
+      <nav>
+          <ul>
+            <li><a href="deleteBook.html"><b>ELIMINAR LIBRO</b></a></li>
+            <li><a href="index.html"><b>BUSCAR LIBRO</b></a></li>
+            <li><a href="login.html"><b>LOGIN</b></a></li>
+            <li><a href="updateBook.html"><b>ACTUALIZAR LIBRO</b></a></li>
+            <li><a href="createBook.html"><b>CREAR LIBRO</b></a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+
+  <section>
+    <h2>BUSCAR LIBRO</h2>
+</section>
+
+    <section class="bookForm">
+      <form id="titleSearchForm">
+        <h3>Buscar por titulo</h3>
+          <input type="text" id="titleInput" class= "input" placeholder="Titulo" required>
+          <button type="submit" id="titleSearchButton">Buscar</button>
+          <button type="reset" id="titleResetButton">Limpiar</button>
+        </form>
+        <form id="authorSearchForm">
+          <h3>Buscar por autor</h3>
+          <input type="text" id="authorInput" class= "input"placeholder="Autor"required>
+          <button type="submit" id="authorSearchButton">Buscar</button>
+          <button type="reset" id="authorResetButton">Limpiar</button>
+        </form>
+        <form id="yearSearchForm">
+          <h3>Buscar por año</h3>
+          <input type="number" id="yearInput" class= "input"placeholder="Año" required max="2025">
+          <button type="submit" id="yearSearchButton">Buscar</button>
+          <button type="reset" id="yearResetButton">Limpiar</button>
+        </form>
+    </section>
+    <section class="showBooks">
+      <div id="bookContainer">
+        <!--The books are shown here--> 
+      </div>
+    </section>
+</main>
+
+<footer> 
+
+</footer>
+
+    <script src="./public/bundle.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  </head>
+  <body>
+
+    <header>
+      <h1>GESTOR DE LIBROS</h1>
+      <nav>
+          <ul>
+            <li><a href="deleteBook.html"><b>ELIMINAR LIBRO</b></a></li>
+            <li><a href="index.html"><b>BUSCAR LIBRO</b></a></li>
+            <li><a href="login.html"><b>LOGIN</b></a></li>
+            <li><a href="updateBook.html"><b>ACTUALIZAR LIBRO</b></a></li>
+            <li><a href="createBook.html"><b>CREAR LIBRO</b></a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>FORMULARIO PARA ACTUALIZAR LIBRO</h2>
+    </section>
+    <section class="bookForm">
+    <form id="updateBookForm">
+      <h3>Ingrese el titulo del libro que desea actualizar</h3>
+      <input type="text" id="titleInputId" class= "input" placeholder="Titulo" required>
+      <h3>Llene el formulario con los datos actualizados</h3>
+      <input type="text" id="titleInput" class= "input" placeholder="Titulo" required>
+      <input type="text" id="authorInput" class= "input"placeholder="Autor"required>
+      <input type="number" id="yearInput" class= "input"placeholder="Año" required max="2025">
+      <select id="stateInput" class="input" required>
+        <option value="" disabled selected>Seleccione un estado</option>
+        <option value="Disponible">Disponible</option>
+        <option value="Reservado">Reservado</option>
+      </select>
+      <button type="submit" id="updateButton">Actualizar</button>
+      <button type="reset" id="resetButton">Limpiar</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+
+</footer>
+<script src="./public/bundle.js"></script>
+  </body>
+</html>
